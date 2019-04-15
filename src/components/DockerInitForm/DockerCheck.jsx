@@ -1,21 +1,17 @@
 import React, {Component} from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import is from 'electron-is'
-// import Process from "child_process";
-// import {execSync} from 'child_process';
+import is from 'electron-is';
+import  {execSync} from 'child_process';
 
 export class DockerCheck extends Component {
 
   state = {
-    os      : '',
-    dockVer : '',
-    dockRun : ''
+    os      : ''
   }
 
   componentDidMount() {
     this.detectOs();
-    this.backgroundProcess();
   }
 
   detectOs = () => {
@@ -36,40 +32,29 @@ export class DockerCheck extends Component {
     }
   }
 
-  backgroundProcess = () => {
-    const process = require('child_process');   // The power of Node.JS
-    let cmd = (is.windows()) ? 'test.bat' : './test.sh';
-    console.log('cmd:', cmd);
-
-    let child = process.spawn(cmd);
-
-    child.on('error', function(err) {
-      console.log('stderr: <'+err+'>' );
-    });
-
-    child.stdout.on('data', function (data) {
-      console.log(data);
-    });
-
-    child.stderr.on('data', function (data) {
-      console.log('stderr: <'+data+'>' );
-    });
-
-    child.on('close', function (code) {
-      if (code == 0)
-        console.log('child process complete.' );
-      else
-        console.log('child process complete.' + code);
-    })
-    this.appendOutput("testing script");
-  }
-
-  appendOutput = (msg) => {
-    return msg;
-  }
-
   render() {
     let { os } = this.state;
+    var dockerExec = [];
+
+    let cmd = (is.windows()) ? 'docker-bash' : 'docker-shell';
+    let commands = require('../../scripts/'+cmd);
+
+    Object.keys(commands).map(function(key, val) {
+      console.log([key] + commands[key] + val);
+      try {
+        var dockExe = execSync(commands[key]);
+      } catch (e) {
+        dockExe = null;
+        console.log(e);
+      }
+      if(dockExe == null) {
+        console.log('empty');
+      }
+      else {
+        console.log(dockExe.toString());
+      }
+
+    });
 
     return (
       <div>
@@ -77,9 +62,7 @@ export class DockerCheck extends Component {
           <Typography variant="h5" component="h5">
             {os}
           </Typography>
-          <Typography component="p">
-            {this.appendOutput()}
-          </Typography>
+          <Typography component="p">{dockerExec}</Typography>
         </Paper>
       </div>
     )
