@@ -7,6 +7,12 @@ const { spawn } = require('child_process')
 const defaultInclude = path.resolve(__dirname, 'src')
 
 module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'index_bundle.js',
+    publicPath: '/'
+  },
   module: {
     rules: [
       {
@@ -21,7 +27,7 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|png|gif)$/,
-        use: [{ loader: 'file-loader?name=img/[name]__[hash:base64:5].[ext]' }],
+        use: [{ loader: 'url-loader?name=img/[name]__[hash:base64:5].[ext]' }],
         include: defaultInclude
       },
       {
@@ -54,6 +60,7 @@ module.exports = {
       )
       .on('close', code => process.exit(0))
       .on('error', spawnError => console.error(spawnError))
-    }
+    },
+    historyApiFallback: true
   }
 }

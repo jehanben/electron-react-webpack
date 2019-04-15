@@ -8,7 +8,7 @@
     "type": "git",
     "url": "https://github.com/jehanben/electron-react-webpack.git"
   },
-  "homepage": "",
+  "homepage": "/",
   "bugs": {
     "url": "https://github.com/jehanben/electron-react-webpack.git/issues"
   },
@@ -49,6 +49,7 @@
     "classnames": "2.2.6",
     "concurrently": "^4.1.0",
     "electron": "^4.1.4",
+    "electron-is": "^3.0.0",
     "electron-is-dev": "^1.1.0",
     "history": "4.7.2",
     "perfect-scrollbar": "1.4.0",
@@ -64,7 +65,8 @@
     "wait-on": "^3.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.2.2",
+    "@babel/core": "^7.4.2",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
     "babili-webpack-plugin": "^0.1.2",
@@ -79,6 +81,7 @@
     "postcss-nested": "^4.1.1",
     "postcss-pxtorem": "^4.0.1",
     "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
     "webpack": "^4.28.2",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.14"
