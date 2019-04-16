@@ -5,9 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/DockerInitForm/CheckList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DockerInitForm/CheckList.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/DockerInitForm/DockerCheck.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DockerInitForm/DockerCheck.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DockerInitForm/Readiness.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DockerInitForm/Readiness.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/docker-shell.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/docker-shell.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/DockerForm/DockerForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DockerForm/DockerForm.jsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -51,11 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CheckList.jsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CheckList.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/DockerInitForm/CheckList.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="66" column="138" selection-start-line="66" selection-start-column="138" selection-end-line="66" selection-end-column="138" />
+            <state relative-caret-position="321">
+              <caret line="56" column="5" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
               <folding>
                 <element signature="e#59#117#0" expanded="true" />
               </folding>
@@ -66,7 +64,8 @@
       <file leaf-file-name="DockerCheck.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/DockerInitForm/DockerCheck.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="105">
+              <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -74,11 +73,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="docker-shell.json" pinned="false" current-in-tab="false">
+      <file leaf-file-name="docker-shell.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/scripts/docker-shell.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="31" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="31" />
+            <state relative-caret-position="30">
+              <caret line="2" column="40" lean-forward="true" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -208,10 +207,10 @@
         <option value="$PROJECT_DIR$/script/test.sh" />
         <option value="$PROJECT_DIR$/webpack.dev.config.js" />
         <option value="$PROJECT_DIR$/src/views/DockerForm/DockerForm.jsx" />
-        <option value="$PROJECT_DIR$/src/components/DockerInitForm/DockerCheck.jsx" />
         <option value="$PROJECT_DIR$/src/components/DockerInitForm/Readiness.jsx" />
-        <option value="$PROJECT_DIR$/src/scripts/docker-shell.json" />
+        <option value="$PROJECT_DIR$/src/components/DockerInitForm/DockerCheck.jsx" />
         <option value="$PROJECT_DIR$/src/components/DockerInitForm/CheckList.jsx" />
+        <option value="$PROJECT_DIR$/src/scripts/docker-shell.json" />
       </list>
     </option>
   </component>
@@ -2590,12 +2589,12 @@
       <workItem from="1555301535016" duration="9814000" />
       <workItem from="1555312038991" duration="18510000" />
       <workItem from="1555338136165" duration="24414000" />
-      <workItem from="1555386538367" duration="21153000" />
+      <workItem from="1555386538367" duration="26706000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86552000" />
+    <option name="totallyTimeSpent" value="92105000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="59" y="27" width="1861" height="1053" extended-state="6" />
@@ -2955,27 +2954,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/DockerInitForm/DockerCheck.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="105">
+          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/scripts/docker-shell.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="31" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/DockerInitForm/CheckList.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="66" column="138" selection-start-line="66" selection-start-column="138" selection-end-line="66" selection-end-column="138" />
+        <state relative-caret-position="321">
+          <caret line="56" column="5" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
           <folding>
             <element signature="e#59#117#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scripts/docker-shell.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="40" lean-forward="true" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
         </state>
       </provider>
     </entry>

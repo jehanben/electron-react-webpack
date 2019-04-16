@@ -28,39 +28,41 @@ export class CheckList extends Component {
   render() {
     let button;
     var isDocker = false;
+    var docCheckList = [];
 
     let cmd = (is.windows()) ? 'docker-bash' : 'docker-shell';
     let commands = require('../../scripts/'+cmd);
 
-    var dockerExec = Object.keys(commands).map(function(key, val) {
-      var parts = commands[key].split(/\s+/g);
+
+    for (var i = 0; i < Object.keys(commands).length; i++) {
+      var commandKey = Object.keys(commands)[i];
+      var commandVal = Object.values(commands)[i];
+
+      var parts = commandVal.split(/\s+/g);
 
       var spawn = spawnSync(parts[0], [parts.slice(1), {
         shell: true
       }]);
-      var errorText = spawn.stderr.toString().trim();
 
-      if (errorText) {
-        // throw new Error(errorText);
-        return (
-          <DockerCheck key = {key}
-                       handlMsg = {errorText}
-                       handlCommand = {commands[key]}
-          />
-        )
+      if(commandKey == 'docker-check' && spawn.stdout.toString().trim() !== '') {
+        isDocker = true;
+        docCheckList.push(spawn.stdout.toString().trim());
       }
-      else if (spawn.stdout.toString().trim() !== '') {
-        if(key == 'docker-check') {
-          isDocker = true;
-        }
+      else if(commandKey == 'docker-check' && spawn.stdout.toString().trim() == '') {
+        break;
+      }
+      else {
+        docCheckList.push(spawn.stdout.toString().trim());
+      }
+    }
 
-        return (
-          <DockerCheck key = {key}
-                       handlMsg = {spawn.stdout.toString().trim()}
-                       handlCommand = {commands[key]}
-          />
-        )
-      }
+    docCheckList = docCheckList.map(function(item, index) {
+
+      return (
+        <DockerCheck key = {index}
+                     handlMsg = {item}
+        />
+      )
     }.bind(this));
 
     if(isDocker == false) {
@@ -80,8 +82,7 @@ export class CheckList extends Component {
                   {(isDocker == true) ? "Docker installation found." : 'Need to install "Docker" to continue...'}
                 </Typography>
                 <List component="nav">
-                  {dockerExec}
-
+                  {docCheckList}
                 </List>
               </Paper>
             </GridItem>
