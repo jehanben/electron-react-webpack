@@ -53,11 +53,7 @@ export class Readiness extends Component {
   };
 
   render() {
-    const { step } = this.state;
-    const { version, projectpath, customCheckList } = this.state;
-    // const values = { version, projectpath, customCheckList };
-
-    const {classes} = this.props.handleStyle;
+    const { step, nextVisible } = this.state;
 
     switch (step) {
       default:
@@ -105,15 +101,11 @@ export class Readiness extends Component {
                   <h4 className={this.props.handleStyle.cardTitleWhite}>Readiness Check</h4>
                   <p className={this.props.handleStyle.cardCategoryWhite}>Results of the readiness check.</p>
                 </CardHeader>
-                <CardBody>
-                  <GridContainer>
-                    <CheckList handleStyle={this.props.handleStyle} />
-                  </GridContainer>
-                </CardBody>
-                <CardFooter>
-                  <Button color="primary" onClick={this.back}>Go Back</Button>
-                  <Button color="primary" onClick={this.continue}>Continue</Button>
-                </CardFooter>
+                <CheckList
+                  handleStyle={this.props.handleStyle}
+                  nextStep = {this.nextStep}
+                  prevStep = {this.prevStep}
+                />
               </Card>
             </GridItem>
           </GridContainer>
