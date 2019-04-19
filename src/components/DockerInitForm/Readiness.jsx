@@ -11,6 +11,7 @@ import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
 import Unarchive from '@material-ui/icons/Unarchive';
 import CheckList from './CheckList.jsx';
+import DockerInit from './DockerInit.jsx';
 
 export class Readiness extends Component {
   state = {
@@ -111,8 +112,14 @@ export class Readiness extends Component {
           </GridContainer>
         );
       case 3:
-
-      break;
+        return (
+            <DockerInit
+              handleStyle = {this.props.handleStyle}
+              handleVersions = {this.props.handleVersion}
+              nextStep = {this.nextStep}
+              prevStep = {this.prevStep}
+            />
+        )
     }
   }
 }
