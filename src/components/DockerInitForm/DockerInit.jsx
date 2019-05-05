@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 // core components
 import GridItem from "../../components/Grid/GridItem.jsx";
@@ -27,6 +28,7 @@ export class DockerInit extends Component {
       isEmpty: false,
       pathEmpty: false
     },
+    toDashboard: false,
     submitted: false,
   }
 
@@ -75,7 +77,10 @@ export class DockerInit extends Component {
     } else if(formData['phpVersion'] == '') {
       formData['isEmpty'] = true;
     } else {
-      this.props.dockerInitOnSubmit(this.state);
+      this.setState({
+        toDashboard: true
+      })
+      // this.props.dockerInitOnSubmit(this.state);
     }
     this.setState({ formData });
   }
@@ -84,6 +89,16 @@ export class DockerInit extends Component {
 
     const { handleStyle, handleVersions } = this.props;
     const { formData } = this.state;
+
+    if (this.state.toDashboard === true) {
+      return <Redirect to={{
+        pathname: '/admin/docker-compose',
+        state: {
+          phpVersion: formData.phpVersion,
+          projectPath: formData.projectPath,
+        }
+      }} />
+    }
 
     return (
       <GridContainer>
