@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import Unarchive from '@material-ui/icons/Unarchive';
 import CheckList from './CheckList.jsx';
 import DockerInit from './DockerInit.jsx';
+import DockerCompileRun from './DockerCompileRun.jsx';
 
 export class Readiness extends Component {
   state = {
@@ -40,6 +41,11 @@ export class Readiness extends Component {
   // Handle fields change
   handleChange = input => e => {
     this.setState({ [input]: e.target.value });
+  }
+
+  onDockerInitSubmit = updatedValue => {
+    console.log(updatedValue);
+    this.nextStep();
   }
 
   // Continue to readiness check
@@ -118,7 +124,15 @@ export class Readiness extends Component {
               handleVersions = {this.props.handleVersion}
               nextStep = {this.nextStep}
               prevStep = {this.prevStep}
+              dockerInitOnSubmit = {fields => this.onDockerInitSubmit(fields)}
             />
+        )
+      case 4:
+        return (
+          <DockerCompileRun
+            handleStyle = {this.props.handleStyle}
+            prevStep = {this.prevStep}
+          />
         )
     }
   }

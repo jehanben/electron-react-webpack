@@ -13,20 +13,19 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Folder from '@material-ui/icons/Folder';
+import CompareArrows from '@material-ui/icons/CompareArrows';
 import Muted from "../Typography/Muted.jsx";
 
-
-const { shell } = require('electron');
 const { dialog } = require('electron').remote;
 
 export class DockerInit extends Component {
 
   state = {
-    php_version: '',
-    project_path: '',
     formData: {
       phpVersion: '',
       projectPath: '',
+      isEmpty: false,
+      pathEmpty: false
     },
     submitted: false,
   }
@@ -34,9 +33,12 @@ export class DockerInit extends Component {
   handleChange = (event) => {
     const { formData } = this.state;
     formData[event.target.name] = event.target.value;
+    if(event.target.value == '') {
+      formData['isEmpty'] = true;
+    } else {
+      formData['isEmpty'] = false;
+    }
     this.setState({ formData });
-    console.log(formData[event.target.name]);
-
   };
 
   handlePrev = () => {
@@ -48,11 +50,34 @@ export class DockerInit extends Component {
       properties: ['openDirectory']
     });
 
+    const { formData } = this.state;
+
     if(typeof path !== 'undefined') {
-      const { formData } = this.state;
       formData['projectPath'] = path.toString();
+      formData['pathEmpty'] = false;
+      this.setState({ formData });
+    } else {
+      formData['pathEmpty'] = true;
       this.setState({ formData });
     }
+  }
+
+  handleOnSubmit = (ev) => {
+    ev.preventDefault();
+    const { formData } = this.state;
+
+    if(formData['projectPath'] == '' && formData['phpVersion'] == '') {
+      formData['pathEmpty'] = true;
+      formData['isEmpty'] = true;
+    }
+    else if(formData['projectPath'] == '') {
+      formData['pathEmpty'] = true;
+    } else if(formData['phpVersion'] == '') {
+      formData['isEmpty'] = true;
+    } else {
+      this.props.dockerInitOnSubmit(this.state);
+    }
+    this.setState({ formData });
   }
 
   render() {
@@ -74,6 +99,8 @@ export class DockerInit extends Component {
                   <GridItem xs={12} sm={12} md={12}>
                     <FormControl className={handleStyle.formControl}>
                       <TextField
+                        required
+                        error={formData.isEmpty === true}
                         name="phpVersion"
                         id="phpVersion"
                         select
@@ -103,16 +130,11 @@ export class DockerInit extends Component {
                 <br/>
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={4}>
-                    <FormHelperText>Select the project folder: </FormHelperText>
+                    <FormControl className={handleStyle.formControl}>
+                      <FormHelperText error={formData.pathEmpty === true}>Select the project folder: </FormHelperText>
+                    </FormControl>
                   </GridItem>
                   <GridItem xs={12} sm={12} md={5}>
-                    <input
-                      accept="*"
-                      className={handleStyle.input}
-                      id="contained-button-file"
-                      multiple
-                      type="file"
-                    />
                     <label htmlFor="contained-button-file">
                       <Button variant="contained" component="span" className={handleStyle.button} onClick={this.handleDirectoryOpen} >
                         <Folder />
@@ -129,6 +151,9 @@ export class DockerInit extends Component {
             </CardBody>
             <CardFooter>
               <Button color="primary"  onClick={this.handlePrev}>Go Back</Button>
+              <Button color="primary" onClick={e => this.handleOnSubmit(e)} >
+                <CompareArrows />  Run Compare
+              </Button>
             </CardFooter>
           </Card>
         </GridItem>

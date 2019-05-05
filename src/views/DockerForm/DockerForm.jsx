@@ -58,7 +58,7 @@ const styles = theme => ({
   }
 });
 
-const currencies = [
+const phpVersions = [
   {
     value: '7.2',
     label: 'v7.2.2',
@@ -82,7 +82,7 @@ function DockerForm(props) {
 
   return (
     <div>
-      <Readiness handleStyle={classes} handleVersion={currencies} />
+      <Readiness handleStyle={classes} handleVersion={phpVersions} />
     </div>
   );
 }
