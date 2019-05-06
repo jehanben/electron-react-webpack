@@ -4,8 +4,10 @@
     <list default="true" id="921ad357-204a-420c-98ce-e5ffa5b6594e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/DockerInitForm/DockerInit.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DockerInitForm/DockerInit.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/DockerCompose/DockerCompose.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DockerCompose/DockerCompose.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/DockerForm/DockerForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DockerForm/DockerForm.jsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,7 +24,7 @@
       <file leaf-file-name="DockerCompileRun.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/DockerInitForm/DockerCompileRun.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
+            <state relative-caret-position="240">
               <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
               <folding>
                 <element signature="e#61#119#0" expanded="true" />
@@ -34,8 +36,15 @@
       <file leaf-file-name="DockerForm.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/DockerForm/DockerForm.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="80" column="27" selection-start-line="80" selection-start-column="22" selection-end-line="80" selection-end-column="27" />
+            <state relative-caret-position="-579" />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TableList.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/views/TableList/TableList.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="555">
+              <caret line="42" column="17" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -43,38 +52,50 @@
       <file leaf-file-name="DockerCompose.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/DockerCompose/DockerCompose.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-column="26" />
+            <state relative-caret-position="216">
+              <caret line="15" column="44" lean-forward="true" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="routes.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="57" column="6" selection-start-line="57" selection-start-column="6" selection-end-line="57" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="750">
+              <caret line="50" column="26" lean-forward="true" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/routes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+            <state relative-caret-position="309">
+              <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
               <folding>
                 <element signature="e#22#65#0" expanded="true" />
-                <element signature="e#162#221#0" expanded="true" />
+                <element signature="e#274#333#0" expanded="true" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="docker.svg" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/assets/img/docker.svg">
-          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file leaf-file-name="DockerInit.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/DockerInitForm/DockerInit.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
-              <caret line="99" column="11" selection-start-line="93" selection-start-column="13" selection-end-line="99" selection-end-column="11" />
+              <caret line="31" column="6" lean-forward="true" selection-start-line="23" selection-start-column="2" selection-end-line="31" selection-end-column="6" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
-                <element signature="e#102#160#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -83,7 +104,7 @@
       <file leaf-file-name="Dashboard.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/Dashboard/Dashboard.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
+            <state relative-caret-position="150">
               <caret line="42" column="41" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
               <folding>
                 <element signature="e#884#942#0" expanded="true" />
@@ -103,18 +124,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>textField</find>
-      <find>class</find>
-      <find>button</find>
-      <find>project_path</find>
-      <find>php_version</find>
-      <find>errorText</find>
-      <find>This tool uses docker cont</find>
-      <find>?</find>
-      <find>start</find>
-      <find>handleVersions</find>
-      <find>handleDirectoryOpen</find>
-      <find>onDockerInitSubmit</find>
       <find>handleOnSubmit</find>
       <find>handleVersion</find>
       <find>nextStep</find>
@@ -133,12 +142,24 @@
       <find>path</find>
       <find>DockerCompose</find>
       <find>font</find>
+      <find>handleVersions</find>
+      <find>cardTitleWhite</find>
+      <find>handleStyle</find>
+      <find>display: 'flex'</find>
+      <find>formControl</find>
+      <find>className</find>
+      <find>handleChange</find>
+      <find>isEmpty</find>
+      <find>Select the PHP version you want to compare your project with.</find>
+      <find>menu</find>
+      <find>8080</find>
+      <find>nginxphpdocker</find>
     </findStrings>
     <dirStrings>
-      <dir>$PROJECT_DIR$/src/components/DockerInitForm</dir>
       <dir>$PROJECT_DIR$/src/views</dir>
-      <dir>$PROJECT_DIR$</dir>
       <dir>$PROJECT_DIR$/src</dir>
+      <dir>$PROJECT_DIR$/src/components/DockerInitForm</dir>
+      <dir>$PROJECT_DIR$</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -147,7 +168,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/assets/jss/material-dashboard-react/layouts/rtlStyle.jsx" />
         <option value="$PROJECT_DIR$/src/components/Card/CardBody.jsx" />
         <option value="$PROJECT_DIR$/src/components/Card/CardFooter.jsx" />
         <option value="$PROJECT_DIR$/src/components/Card/CardHeader.jsx" />
@@ -191,13 +211,14 @@
         <option value="$PROJECT_DIR$/src/scripts/docker-shell.json" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/components/Typography/Muted.jsx" />
-        <option value="$PROJECT_DIR$/src/views/DockerForm/DockerForm.jsx" />
         <option value="$PROJECT_DIR$/src/components/DockerInitForm/DockerCompileRun.jsx" />
         <option value="$PROJECT_DIR$/src/components/DockerInitForm/Readiness.jsx" />
-        <option value="$PROJECT_DIR$/src/components/DockerInitForm/DockerInit.jsx" />
-        <option value="$PROJECT_DIR$/src/views/DockerCompose/DockerCompose.jsx" />
         <option value="$PROJECT_DIR$/src/assets/img/docker.svg" />
         <option value="$PROJECT_DIR$/src/routes.js" />
+        <option value="$PROJECT_DIR$/src/views/DockerForm/DockerForm.jsx" />
+        <option value="$PROJECT_DIR$/src/components/DockerInitForm/DockerInit.jsx" />
+        <option value="$PROJECT_DIR$/src/views/DockerCompose/DockerCompose.jsx" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -363,6 +384,7 @@
       <path value="$PROJECT_DIR$/node_modules/@webassemblyjs/wast-printer/package.json" />
       <path value="$PROJECT_DIR$/node_modules/@xtuc/ieee754/package.json" />
       <path value="$PROJECT_DIR$/node_modules/@xtuc/long/package.json" />
+      <path value="$PROJECT_DIR$/node_modules/JSONStream/package.json" />
       <path value="$PROJECT_DIR$/node_modules/abab/package.json" />
       <path value="$PROJECT_DIR$/node_modules/accepts/package.json" />
       <path value="$PROJECT_DIR$/node_modules/acorn-dynamic-import/package.json" />
@@ -523,6 +545,7 @@
       <path value="$PROJECT_DIR$/node_modules/bfj/package.json" />
       <path value="$PROJECT_DIR$/node_modules/big.js/package.json" />
       <path value="$PROJECT_DIR$/node_modules/binary-extensions/package.json" />
+      <path value="$PROJECT_DIR$/node_modules/bl/package.json" />
       <path value="$PROJECT_DIR$/node_modules/bluebird/package.json" />
       <path value="$PROJECT_DIR$/node_modules/bn.js/package.json" />
       <path value="$PROJECT_DIR$/node_modules/body-parser/node_modules/debug/package.json" />
@@ -942,6 +965,8 @@
       <path value="$PROJECT_DIR$/node_modules/dns-equal/package.json" />
       <path value="$PROJECT_DIR$/node_modules/dns-packet/package.json" />
       <path value="$PROJECT_DIR$/node_modules/dns-txt/package.json" />
+      <path value="$PROJECT_DIR$/node_modules/docker-modem/package.json" />
+      <path value="$PROJECT_DIR$/node_modules/dockerode/package.json" />
       <path value="$PROJECT_DIR$/node_modules/doctrine/package.json" />
       <path value="$PROJECT_DIR$/node_modules/dom-converter/package.json" />
       <path value="$PROJECT_DIR$/node_modules/dom-helpers/package.json" />
@@ -1149,6 +1174,7 @@
       <path value="$PROJECT_DIR$/node_modules/from2/node_modules/readable-stream/package.json" />
       <path value="$PROJECT_DIR$/node_modules/from2/node_modules/string_decoder/package.json" />
       <path value="$PROJECT_DIR$/node_modules/from2/package.json" />
+      <path value="$PROJECT_DIR$/node_modules/fs-constants/package.json" />
       <path value="$PROJECT_DIR$/node_modules/fs-extra/package.json" />
       <path value="$PROJECT_DIR$/node_modules/fs-write-stream-atomic/package.json" />
       <path value="$PROJECT_DIR$/node_modules/fs.realpath/package.json" />
@@ -1503,6 +1529,7 @@
       <path value="$PROJECT_DIR$/node_modules/json5/package.json" />
       <path value="$PROJECT_DIR$/node_modules/jsonfile/package.json" />
       <path value="$PROJECT_DIR$/node_modules/jsonify/package.json" />
+      <path value="$PROJECT_DIR$/node_modules/jsonparse/package.json" />
       <path value="$PROJECT_DIR$/node_modules/jsprim/package.json" />
       <path value="$PROJECT_DIR$/node_modules/jss-camel-case/package.json" />
       <path value="$PROJECT_DIR$/node_modules/jss-default-unit/package.json" />
@@ -2251,6 +2278,7 @@
       <path value="$PROJECT_DIR$/node_modules/spdy/node_modules/debug/package.json" />
       <path value="$PROJECT_DIR$/node_modules/spdy/package.json" />
       <path value="$PROJECT_DIR$/node_modules/speedometer/package.json" />
+      <path value="$PROJECT_DIR$/node_modules/split-ca/package.json" />
       <path value="$PROJECT_DIR$/node_modules/split-string/package.json" />
       <path value="$PROJECT_DIR$/node_modules/sprintf-js/package.json" />
       <path value="$PROJECT_DIR$/node_modules/sshpk/package.json" />
@@ -2304,6 +2332,8 @@
       <path value="$PROJECT_DIR$/node_modules/table/node_modules/strip-ansi/package.json" />
       <path value="$PROJECT_DIR$/node_modules/table/package.json" />
       <path value="$PROJECT_DIR$/node_modules/tapable/package.json" />
+      <path value="$PROJECT_DIR$/node_modules/tar-fs/package.json" />
+      <path value="$PROJECT_DIR$/node_modules/tar-stream/package.json" />
       <path value="$PROJECT_DIR$/node_modules/terser-webpack-plugin/node_modules/source-map/package.json" />
       <path value="$PROJECT_DIR$/node_modules/terser-webpack-plugin/package.json" />
       <path value="$PROJECT_DIR$/node_modules/terser/node_modules/source-map-support/package.json" />
@@ -2332,6 +2362,7 @@
       <path value="$PROJECT_DIR$/node_modules/tmp/package.json" />
       <path value="$PROJECT_DIR$/node_modules/tmpl/package.json" />
       <path value="$PROJECT_DIR$/node_modules/to-arraybuffer/package.json" />
+      <path value="$PROJECT_DIR$/node_modules/to-buffer/package.json" />
       <path value="$PROJECT_DIR$/node_modules/to-fast-properties/package.json" />
       <path value="$PROJECT_DIR$/node_modules/to-object-path/node_modules/kind-of/package.json" />
       <path value="$PROJECT_DIR$/node_modules/to-object-path/package.json" />
@@ -2516,11 +2547,6 @@
               <item name="electron-react-webpack" type="b2602c69:ProjectViewProjectNode" />
               <item name="electron-react-webpack" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="electron-react-webpack" type="b2602c69:ProjectViewProjectNode" />
-              <item name="electron-react-webpack" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -2538,13 +2564,14 @@
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/script" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/assets/img" />
       <recent name="$PROJECT_DIR$/src/scripts" />
       <recent name="$PROJECT_DIR$/src/components/DockerInitForm" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/script" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -2578,33 +2605,34 @@
       <workItem from="1556119112606" duration="604000" />
       <workItem from="1556196200648" duration="1885000" />
       <workItem from="1556375446177" duration="599000" />
-      <workItem from="1557066805684" duration="12612000" />
+      <workItem from="1557066805684" duration="12801000" />
+      <workItem from="1557155400531" duration="11231000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="150386000" />
+    <option name="totallyTimeSpent" value="161806000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="59" y="27" width="1861" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info anchor="bottom" id="TypeScript" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24972796" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24972796" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32968238" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.32968238" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32858709" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32858709" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TypeScript" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
     </layout>
@@ -2616,6 +2644,27 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/views/Dashboard/Dashboard.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="42" column="41" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
+          <folding>
+            <element signature="e#884#942#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="29" lean-forward="true" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+          <folding>
+            <element signature="e#22#65#0" expanded="true" />
+            <element signature="e#274#333#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/assets/jss/material-dashboard-react/components/tableStyle.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -2662,20 +2711,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="27" selection-start-column="27" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="41" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/UserProfile/UserProfile.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="36" column="29" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -2781,11 +2816,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/CustomInput/CustomInput.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-540" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/assets/jss/material-dashboard-react/components/typographyStyle.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-249">
@@ -2805,9 +2835,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="21" selection-end-column="3" />
-          <folding>
-            <element signature="e#59#117#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2815,9 +2842,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2831,16 +2855,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="61" column="32" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/Dashboard/Dashboard.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
+        <state relative-caret-position="150">
           <caret line="42" column="41" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
           <folding>
             <element signature="e#884#942#0" expanded="true" />
@@ -2855,24 +2872,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/DockerForm/DockerForm.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="80" column="27" selection-start-line="80" selection-start-column="22" selection-end-line="80" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/DockerInitForm/DockerInit.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="99" column="11" selection-start-line="93" selection-start-column="13" selection-end-line="99" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-            <element signature="e#102#160#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/@material-ui/core/SvgIcon/SvgIcon.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -2880,41 +2879,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/@material-ui/icons/Code.d.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/@iconify/react/mdi/docker.d.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/@iconify/react/icon.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/logo.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/img/docker-bk.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/DockerCompose/DockerCompose.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@iconify/react/icon.d.ts" />
     <entry file="file://$PROJECT_DIR$/src/layouts/Admin.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="26" column="37" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
-          <folding>
-            <element signature="e#397#451#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2922,16 +2891,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="25" column="36" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
           <folding>
-            <element signature="e#0#25#0" expanded="true" />
-            <element signature="e#197#237#0" expanded="true" />
+            <element signature="e#22#65#0" expanded="true" />
+            <element signature="e#274#333#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/DockerInitForm/DockerCompileRun.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
+        <state relative-caret-position="240">
           <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
           <folding>
             <element signature="e#61#119#0" expanded="true" />
@@ -2939,17 +2915,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/img/docker.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes.js">
+    <entry file="file://$PROJECT_DIR$/src/components/CustomInput/CustomInput.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+        <state relative-caret-position="-369" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/UserProfile/UserProfile.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="62" column="30" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/DockerInitForm/DockerInit.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="31" column="6" lean-forward="true" selection-start-line="23" selection-start-column="2" selection-end-line="31" selection-end-column="6" />
           <folding>
-            <element signature="e#22#65#0" expanded="true" />
-            <element signature="e#162#221#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/DockerForm/DockerForm.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-579" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/TableList/TableList.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="42" column="17" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/dockerode/lib/docker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="40" column="29" lean-forward="true" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="50" column="26" lean-forward="true" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/DockerCompose/DockerCompose.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="15" column="44" lean-forward="true" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="57" column="6" selection-start-line="57" selection-start-column="6" selection-end-line="57" selection-end-column="6" />
         </state>
       </provider>
     </entry>

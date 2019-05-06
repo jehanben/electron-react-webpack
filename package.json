@@ -48,6 +48,7 @@
     "chartist": "0.10.1",
     "classnames": "2.2.6",
     "concurrently": "^4.1.0",
+    "dockerode": "^2.5.8",
     "electron": "^4.1.4",
     "electron-is": "^3.0.0",
     "electron-is-dev": "^1.1.0",

@@ -46,6 +46,7 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
+    width: 300
   },
   dense: {
     marginTop: 19,
@@ -53,9 +54,6 @@ const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
   },
-  input: {
-    display: 'none',
-  }
 });
 
 const phpVersions = [

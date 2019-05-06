@@ -24,8 +24,10 @@ export class DockerInit extends Component {
   state = {
     formData: {
       phpVersion: '',
+      projectName: '',
       projectPath: '',
       isEmpty: false,
+      nameEmpty: false,
       pathEmpty: false
     },
     toDashboard: false,
@@ -35,9 +37,14 @@ export class DockerInit extends Component {
   handleChange = (event) => {
     const { formData } = this.state;
     formData[event.target.name] = event.target.value;
-    if(event.target.value == '') {
+    if(event.target.value == '' && event.target.name == 'phpVersion') {
       formData['isEmpty'] = true;
-    } else {
+    }
+    else if(event.target.value == '' && event.target.name == 'projectName') {
+      formData['nameEmpty'] = true;
+    }
+    else {
+      formData['nameEmpty'] = false;
       formData['isEmpty'] = false;
     }
     this.setState({ formData });
@@ -68,15 +75,19 @@ export class DockerInit extends Component {
     ev.preventDefault();
     const { formData } = this.state;
 
-    if(formData['projectPath'] == '' && formData['phpVersion'] == '') {
+    if(formData['projectPath'] == '' && formData['phpVersion'] == '' && formData['projectName'] == '') {
       formData['pathEmpty'] = true;
       formData['isEmpty'] = true;
+      formData['nameEmpty'] = true;
     }
     else if(formData['projectPath'] == '') {
       formData['pathEmpty'] = true;
     } else if(formData['phpVersion'] == '') {
       formData['isEmpty'] = true;
-    } else {
+    } else if(formData['projectName'] == '') {
+      formData['nameEmpty'] = true;
+    }
+    else {
       this.setState({
         toDashboard: true
       })
@@ -95,6 +106,7 @@ export class DockerInit extends Component {
         pathname: '/admin/docker-compose',
         state: {
           phpVersion: formData.phpVersion,
+          projectName: formData.projectName,
           projectPath: formData.projectPath,
         }
       }} />
@@ -138,6 +150,24 @@ export class DockerInit extends Component {
                           </option>
                         ))}
                       </TextField>
+                    </FormControl>
+                  </GridItem>
+                </GridContainer>
+                <GridContainer>
+                  <GridItem xs={12} sm={12} md={12}>
+                    <FormControl className={handleStyle.formControl}>
+                      <TextField
+                        required
+                        error={formData.nameEmpty === true}
+                        id="projectName"
+                        name="projectName"
+                        label="Project Name"
+                        className={handleStyle.menu}
+                        value={formData.projectName}
+                        margin="normal"
+                        helperText="Provide a project name, it will be used as the image tag name."
+                        onChange={this.handleChange}
+                      />
                     </FormControl>
                   </GridItem>
                 </GridContainer>
