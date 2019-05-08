@@ -82,7 +82,7 @@ export class CheckList extends Component {
                   {(isDocker == true) ? "Docker installation found." : 'Need to install "Docker" to continue...'}
                 </Typography>
                 <List component="nav">
-                  {docCheckList}
+                    {docCheckList}
                 </List>
               </Paper>
             </GridItem>
