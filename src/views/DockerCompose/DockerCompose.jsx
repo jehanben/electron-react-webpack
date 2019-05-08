@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from 'prop-types';
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import Stepper from '@material-ui/core/Stepper';
@@ -15,6 +14,9 @@ import Card from "../../components/Card/Card.jsx";
 import CardHeader from "../../components/Card/CardHeader.jsx";
 import CardBody from "../../components/Card/CardBody.jsx";
 import CardFooter from "../../components/Card/CardFooter.jsx";
+
+const fs = require("fs");
+const dataLocation = require('path').resolve('log/docker/docker-build.txt');
 
 const styles = theme => ({
   root: {
@@ -53,7 +55,7 @@ const styles = theme => ({
 });
 
 function getSteps() {
-  return ['Docker image and container build', 'Create an ad group', 'Create an ad'];
+  return ['Docker image and container build', 'Execute code checker', 'Generate Results'];
 }
 
 function getStepContent(stepIndex) {
@@ -61,9 +63,9 @@ function getStepContent(stepIndex) {
     case 0:
       return 'Initiating Docker image build and starting the container.';
     case 1:
-      return 'What is an ad group anyways?';
+      return 'Checking for code compatibility across the project.';
     case 2:
-      return 'This is the bit I really care about!';
+      return 'Output of the code compatibility results.';
     default:
       return 'Unknown stepIndex';
   }
@@ -78,7 +80,8 @@ class DockerCompose extends React.Component {
       // projectName: props.location.state.projectName,
       // projectPath: props.location.state.projectPath,
       value: '',
-      activeStep: 0
+      activeStep: 0,
+      stopReRun: false
     }
   }
 
@@ -92,6 +95,10 @@ class DockerCompose extends React.Component {
     this.setState(state => ({
       activeStep: state.activeStep - 1,
     }));
+
+    if(this.state.activeStep === 1) {
+      this.handleDockerFileLog()
+    }
   };
 
   handleReset = () => {
@@ -100,87 +107,103 @@ class DockerCompose extends React.Component {
     });
   };
 
+  handleDockerFileLog = () => {
+    this.setState({
+      stopReRun: true
+    })
+  }
+
   render() {
     const { classes } = this.props;
     const steps = getSteps();
-    const { activeStep } = this.state;
+    const { activeStep, stopReRun } = this.state;
 
-    var Docker = require('dockerode');
+    if(activeStep === 0) {
 
-    var docker = new Docker({
-      socketPath: '/var/run/docker.sock'
-    });
+      console.log(activeStep + "in for run");
+      if (fs.existsSync(dataLocation)) {
+        var writeStream = fs.createWriteStream(dataLocation, { flags : 'w' });
+      }
 
+      var Docker = require('dockerode');
 
-    docker.buildImage('./Dockerfile.tar.xz', {
-      t: 'nginxphpdocker/app',
-      rm: true,
-      buildargs: {
-        "buildtime_version":"7.2"
-      },
-    }, function(err, stream) {
-      if (err) return;
-
-      stream.on('error', function(err) {
-        appendOutput('stderr: <'+err+'>' );
+      var docker = new Docker({
+        socketPath: '/var/run/docker.sock'
       });
 
-      stream.on('data', function (data) {
-        appendOutput(data);
-      });
 
-      stream.on('end', function() {
-        done();
-      });
-    }.bind(this));
-
-    function done() {
-      docker.createContainer({
-        Image: 'nginxphpdocker/app',
-        ExposedPorts: {
-          "80/tcp": {}
+      docker.buildImage('./Dockerfile.tar.xz', {
+        t: 'nginxphpdocker/app',
+        rm: true,
+        buildargs: {
+          "buildtime_version":"7.2"
         },
-        HostConfig: {
-          Privileged: false,
-          Binds: [
-            "/home/jehan/work/MSC/Project/sampleapp/application:/var/www/html/public"
-          ],
-          PortBindings: {
-            "80/tcp": [
-              { "HostPort": "9000" }
-            ]
-          },
-        }
-      }, function(err, container) {
-        container.attach({
-          stream: true,
-          stdout: true,
-          stderr: true,
-          tty: true
-        }, function(err, stream) {
-          if (err) return;
+      }, function(err, stream) {
+        if (err) return;
 
-          // stream.pipe(process.stdout);
-
-          stream.on('data', function (data) {
-            appendOutput(data);
-          });
-
-          container.start(function(err, data) {
-            if (err) {
-              appendOutput(err);
-              return
-            }
-            appendOutput(data);
-
-            setDockerStatus('Docker build process completed');
-          });
-
-          stream.on('end', function () {
-              setDockerStatus('Docker build process exited...');
-          })
+        stream.on('error', function(err) {
+          appendOutput('stderr: <'+err+'>' );
         });
-      });
+
+        stream.pipe(writeStream);
+
+        stream.on('data', function (data) {
+          appendOutput(data);
+        });
+
+        stream.on('end', function() {
+          // done();
+        });
+      }.bind(this));
+
+      function done() {
+        docker.createContainer({
+          Image: 'nginxphpdocker/app',
+          ExposedPorts: {
+            "80/tcp": {}
+          },
+          HostConfig: {
+            Privileged: false,
+            Binds: [
+              "/home/jehan/work/MSC/Project/sampleapp/application:/var/www/html/public"
+            ],
+            PortBindings: {
+              "80/tcp": [
+                { "HostPort": "9000" }
+              ]
+            },
+          }
+        }, function(err, container) {
+          container.attach({
+            stream: true,
+            stdout: true,
+            stderr: true,
+            tty: true
+          }, function(err, stream) {
+            if (err) return;
+
+            stream.pipe(writeStream);
+
+            stream.on('data', function (data) {
+              appendOutput(data);
+            });
+
+            container.start(function(err, data) {
+              if (err) {
+                appendOutput(err);
+                return
+              }
+              appendOutput(data);
+
+              setDockerStatus('Docker build process completed');
+            });
+
+            stream.on('end', function () {
+              setDockerStatus('Docker build process exited...');
+            })
+          });
+        });
+      }
     }
 
     function appendOutput(msg) {
@@ -191,60 +214,175 @@ class DockerCompose extends React.Component {
       document.getElementById("status").innerHTML = msg;
     }
 
-    return (
-      <GridContainer>
-        <GridItem xs={12} sm={12} md={12}>
-          <Card>
-            <CardHeader color="primary">
-              <h4 className={classes.cardTitleWhite}>Docker Compose Build</h4>
-              <p className={classes.cardCategoryWhite}>
-                Starting up the docker image build and container for PHP code checker.
-              </p>
-            </CardHeader>
-            <CardBody>
-              <Stepper activeStep={activeStep} alternativeLabel>
-                {steps.map(label => (
-                  <Step key={label}>
-                    <StepLabel>{label}</StepLabel>
-                  </Step>
-                ))}
-              </Stepper>
-              <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
-              <div id="status"></div>
-              <textarea className={classes.textAreaStyle} rows="20" id="command-output" disabled></textarea>
-            </CardBody>
-            <CardFooter>
-              <div>
-                {this.state.activeStep === steps.length ? (
+    console.log(activeStep);
+
+
+    switch (activeStep) {
+      default:
+      case 0:
+        return (
+          <GridContainer>
+            <GridItem xs={12} sm={12} md={12}>
+              <Card>
+                <CardHeader color="primary">
+                  <h4 className={classes.cardTitleWhite}>Docker Compose Build</h4>
+                  <p className={classes.cardCategoryWhite}>
+                    Starting up the docker image build and container for PHP code checker.
+                  </p>
+                </CardHeader>
+                <CardBody>
+                  <Stepper activeStep={activeStep} alternativeLabel>
+                    {steps.map(label => (
+                      <Step key={label}>
+                        <StepLabel>{label}</StepLabel>
+                      </Step>
+                    ))}
+                  </Stepper>
+                  <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+                  <div id="status"></div>
+                  <textarea className={classes.textAreaStyle} rows="20" id="command-output" disabled></textarea>
+                </CardBody>
+                <CardFooter>
                   <div>
-                    <Typography className={classes.instructions}>All steps completed</Typography>
-                    <Button onClick={this.handleReset}>Reset</Button>
+                    {this.state.activeStep === steps.length ? (
+                      <div>
+                        <Typography className={classes.instructions}>All steps completed</Typography>
+                        <Button onClick={this.handleReset}>Reset</Button>
+                      </div>
+                    ) : (
+                      <div>
+                        <div>
+                          <Button
+                            disabled={activeStep === 0}
+                            onClick={this.handleBack}
+                            className={classes.backButton}
+                          >
+                            Back
+                          </Button>
+                          <Button variant="contained"
+                                  color="primary"
+                                  onClick={this.handleNext}
+                          >
+                            {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                          </Button>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                ) : (
+                </CardFooter>
+              </Card>
+            </GridItem>
+          </GridContainer>
+        )
+      case 1:
+        return (
+          <GridContainer>
+            <GridItem xs={12} sm={12} md={12}>
+              <Card>
+                <CardHeader color="primary">
+                  <h4 className={classes.cardTitleWhite}>Docker Compose Build</h4>
+                  <p className={classes.cardCategoryWhite}>
+                    Starting up the docker image build and container for PHP code checker.
+                  </p>
+                </CardHeader>
+                <CardBody>
+                  <Stepper activeStep={activeStep} alternativeLabel>
+                    {steps.map(label => (
+                      <Step key={label}>
+                        <StepLabel>{label}</StepLabel>
+                      </Step>
+                    ))}
+                  </Stepper>
+                  <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+
+                </CardBody>
+                <CardFooter>
                   <div>
-                    <div>
-                      <Button
-                        disabled={activeStep === 0}
-                        onClick={this.handleBack}
-                        className={classes.backButton}
-                      >
-                        Back
-                      </Button>
-                      <Button variant="contained"
-                        color="primary"
-                        onClick={this.handleNext}
-                      >
-                        {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                      </Button>
-                    </div>
+                    {this.state.activeStep === steps.length ? (
+                      <div>
+                        <Typography className={classes.instructions}>All steps completed</Typography>
+                        <Button onClick={this.handleReset}>Reset</Button>
+                      </div>
+                    ) : (
+                      <div>
+                        <div>
+                          <Button
+                            disabled={activeStep === 0}
+                            onClick={this.handleBack}
+                            className={classes.backButton}
+                          >
+                            Back
+                          </Button>
+                          <Button variant="contained"
+                                  color="primary"
+                                  onClick={this.handleNext}
+                          >
+                            {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                          </Button>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-            </CardFooter>
-          </Card>
-        </GridItem>
-      </GridContainer>
-    )
+                </CardFooter>
+              </Card>
+            </GridItem>
+          </GridContainer>
+        )
+      case 2:
+        return (
+          <GridContainer>
+            <GridItem xs={12} sm={12} md={12}>
+              <Card>
+                <CardHeader color="primary">
+                  <h4 className={classes.cardTitleWhite}>Docker Compose Build</h4>
+                  <p className={classes.cardCategoryWhite}>
+                    Starting up the docker image build and container for PHP code checker.
+                  </p>
+                </CardHeader>
+                <CardBody>
+                  <Stepper activeStep={activeStep} alternativeLabel>
+                    {steps.map(label => (
+                      <Step key={label}>
+                        <StepLabel>{label}</StepLabel>
+                      </Step>
+                    ))}
+                  </Stepper>
+                  <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+
+                </CardBody>
+                <CardFooter>
+                  <div>
+                    {this.state.activeStep === steps.length ? (
+                      <div>
+                        <Typography className={classes.instructions}>All steps completed</Typography>
+                        <Button onClick={this.handleReset}>Reset</Button>
+                      </div>
+                    ) : (
+                      <div>
+                        <div>
+                          <Button
+                            disabled={activeStep === 0}
+                            onClick={this.handleBack}
+                            className={classes.backButton}
+                          >
+                            Back
+                          </Button>
+                          <Button variant="contained"
+                                  color="primary"
+                                  onClick={this.handleNext}
+                          >
+                            {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </CardFooter>
+              </Card>
+            </GridItem>
+          </GridContainer>
+        )
+    }
   }
 }
 
