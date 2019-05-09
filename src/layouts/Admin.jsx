@@ -17,7 +17,7 @@ import routes from "../routes.js";
 import dashboardStyle from "../assets/jss/material-dashboard-react/layouts/dashboardStyle.jsx";
 
 import image from "../assets/img/sidebar-5.jpg";
-import logo from "../assets/img/reactlogo.png";
+import logo from "../assets/img/cc-logo.png";
 
 console.log(logo);
 

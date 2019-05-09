@@ -18,7 +18,7 @@ import routes from "../routes.js";
 import rtlStyle from "../assets/jss/material-dashboard-react/layouts/rtlStyle.jsx";
 
 import image from "../assets/img/sidebar-2.jpg";
-import logo from "../assets/img/reactlogo.png";
+import logo from "../assets/img/cc-logo.png";
 
 const switchRoutes = (
   <Switch>

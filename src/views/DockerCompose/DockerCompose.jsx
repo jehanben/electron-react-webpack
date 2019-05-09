@@ -175,9 +175,12 @@ class DockerCompose extends React.Component {
 
           setTimeout(() => {
             stream.unpipe(writeStream);
+            console.log(container.id);
             this.enableNext();
           }, 5000)
         }.bind(this));
+
+
 
         stream.on('end', function () {
           this.setDockerStatus('Docker build process exited...');
