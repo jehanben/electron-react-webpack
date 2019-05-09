@@ -16,7 +16,14 @@ import CardBody from "../../components/Card/CardBody.jsx";
 import CardFooter from "../../components/Card/CardFooter.jsx";
 
 const fs = require("fs");
-const dataLocation = require('path').resolve('log/docker/docker-build.txt');
+const dockerBuildLog = require('path').resolve('log/docker/docker-build.txt');
+const dockerRunLog = require('path').resolve('log/docker/docker-run.txt');
+
+var Docker = require('dockerode');
+
+var docker = new Docker({
+  socketPath: '/var/run/docker.sock'
+});
 
 const styles = theme => ({
   root: {
@@ -81,8 +88,109 @@ class DockerCompose extends React.Component {
       // projectPath: props.location.state.projectPath,
       value: '',
       activeStep: 0,
-      stopReRun: false
+      stopReRun: false,
+      nextButton: false
     }
+  }
+
+  componentDidMount() {
+    const { activeStep, stopReRun } = this.state;
+
+    if(activeStep === 0 && stopReRun === false) {
+
+      if (fs.existsSync(dockerBuildLog)) {
+        var writeStream = fs.createWriteStream(dockerBuildLog, { flags : 'w' });
+      }
+
+      docker.buildImage('./Dockerfile.tar.xz', {
+        t: 'nginxphpdocker/app',
+        rm: true,
+        buildargs: {
+          "buildtime_version":"7.2"
+        },
+      }, function(err, stream) {
+        if (err) return;
+
+        stream.on('error', function(err) {
+          this.appendOutput('stderr: <'+err+'>' );
+        }.bind(this));
+
+        stream.pipe(writeStream);
+
+        stream.on('data', function (data) {
+          this.appendOutput(data);
+        }.bind(this));
+
+        stream.on('end', function() {
+          this.done();
+        }.bind(this));
+      }.bind(this));
+    }
+  }
+
+  done = () => {
+    if (fs.existsSync(dockerRunLog)) {
+      var writeStream = fs.createWriteStream(dockerRunLog, { flags : 'w', encoding: 'utf8' });
+    }
+
+    docker.createContainer({
+      Image: 'nginxphpdocker/app',
+      ExposedPorts: {
+        "80/tcp": {}
+      },
+      HostConfig: {
+        Privileged: false,
+        Binds: [
+          "/home/jehan/work/MSC/Project/sampleapp/application:/var/www/html/public"
+        ],
+        PortBindings: {
+          "80/tcp": [
+            { "HostPort": "9000" }
+          ]
+        },
+      }
+    }, function(err, container) {
+      container.attach({
+        stream: true,
+        stdout: true,
+        stderr: true,
+        tty: true
+      }, function(err, stream) {
+        if (err) return;
+
+        stream.pipe(writeStream);
+
+        stream.on('data', function (data) {
+          this.appendOutput(data);
+        }.bind(this));
+
+        container.start(function(err, data) {
+          if (err) {
+            this.appendOutput(err);
+            return
+          }
+          this.appendOutput(data);
+
+          this.setDockerStatus('Docker build process completed');
+
+          setTimeout(() => {
+            stream.unpipe(writeStream);
+            this.enableNext();
+          }, 5000)
+        }.bind(this));
+
+        stream.on('end', function () {
+          this.setDockerStatus('Docker build process exited...');
+        }.bind(this))
+      }.bind(this));
+    }.bind(this));
+  }
+
+  enableNext = () => {
+    this.setState({
+      nextButton: true,
+      stopReRun: true
+    });
   }
 
   handleNext = () => {
@@ -113,109 +221,18 @@ class DockerCompose extends React.Component {
     })
   }
 
+  appendOutput = (msg) => {
+    document.getElementById("command-output").value += (msg);
+  }
+
+  setDockerStatus = (msg) => {
+    document.getElementById("status").innerHTML = msg;
+  }
+
   render() {
     const { classes } = this.props;
     const steps = getSteps();
-    const { activeStep, stopReRun } = this.state;
-
-    if(activeStep === 0) {
-
-      console.log(activeStep + "in for run");
-      if (fs.existsSync(dataLocation)) {
-        var writeStream = fs.createWriteStream(dataLocation, { flags : 'w' });
-      }
-
-      var Docker = require('dockerode');
-
-      var docker = new Docker({
-        socketPath: '/var/run/docker.sock'
-      });
-
-
-      docker.buildImage('./Dockerfile.tar.xz', {
-        t: 'nginxphpdocker/app',
-        rm: true,
-        buildargs: {
-          "buildtime_version":"7.2"
-        },
-      }, function(err, stream) {
-        if (err) return;
-
-        stream.on('error', function(err) {
-          appendOutput('stderr: <'+err+'>' );
-        });
-
-        stream.pipe(writeStream);
-
-        stream.on('data', function (data) {
-          appendOutput(data);
-        });
-
-        stream.on('end', function() {
-          // done();
-        });
-      }.bind(this));
-
-      function done() {
-        docker.createContainer({
-          Image: 'nginxphpdocker/app',
-          ExposedPorts: {
-            "80/tcp": {}
-          },
-          HostConfig: {
-            Privileged: false,
-            Binds: [
-              "/home/jehan/work/MSC/Project/sampleapp/application:/var/www/html/public"
-            ],
-            PortBindings: {
-              "80/tcp": [
-                { "HostPort": "9000" }
-              ]
-            },
-          }
-        }, function(err, container) {
-          container.attach({
-            stream: true,
-            stdout: true,
-            stderr: true,
-            tty: true
-          }, function(err, stream) {
-            if (err) return;
-
-            stream.pipe(writeStream);
-
-            stream.on('data', function (data) {
-              appendOutput(data);
-            });
-
-            container.start(function(err, data) {
-              if (err) {
-                appendOutput(err);
-                return
-              }
-              appendOutput(data);
-
-              setDockerStatus('Docker build process completed');
-            });
-
-            stream.on('end', function () {
-              setDockerStatus('Docker build process exited...');
-            })
-          });
-        });
-      }
-    }
-
-    function appendOutput(msg) {
-      document.getElementById("command-output").value += (msg);
-    }
-
-    function setDockerStatus(msg) {
-      document.getElementById("status").innerHTML = msg;
-    }
-
-    console.log(activeStep);
-
+    const { activeStep, nextButton } = this.state;
 
     switch (activeStep) {
       default:
@@ -259,7 +276,9 @@ class DockerCompose extends React.Component {
                           >
                             Back
                           </Button>
-                          <Button variant="contained"
+                          <Button
+                            disabled={nextButton === false}
+                            variant="contained"
                                   color="primary"
                                   onClick={this.handleNext}
                           >
