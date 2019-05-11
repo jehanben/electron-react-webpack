@@ -79,7 +79,7 @@ function getStepContent(stepIndex) {
     case 0:
       return 'Initiating Docker image build and starting the container.';
     case 1:
-      return 'Checking for code compatibility across the project.';
+      return 'Verify container and project setup';
     case 2:
       return 'Output of the code compatibility results.';
     default:
@@ -255,8 +255,8 @@ class DockerCompose extends React.Component {
 
     if(containerId !== false) {
       return (
-          <Paper className={classes.root} elevation={1}>
-            <Typography variant="h5" component="h3">Docker Container starter.</Typography>
+          <Paper className={classes.root} elevation={3}>
+            <Typography variant="h6" component="h6">Docker Container starter.</Typography>
             <Typography component="p">
               &nbsp; - Docker Image Tag Name: nginxphpdocker/app <br/>
               &nbsp; - Docker Container ID: {containerId}
