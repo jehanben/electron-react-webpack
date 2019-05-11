@@ -35,20 +35,20 @@
 {"stream":" ---\u003e 72368fe20df8\n"}
 {"stream":"Step 10/13 : RUN sed -i -e \"s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g\" /etc/php/${IMAGE_PHP_VERSION}/fpm/php.ini \u0026\u0026 sed -i -e \"s/error_reporting = E_ALL \u0026 ~E_DEPRECATED \u0026 ~E_STRICT/error_reporting = E_ALL /g\" /etc/php/${IMAGE_PHP_VERSION}/fpm/php.ini \u0026\u0026 sed -i -e \"s/error_reporting = E_ALL \u0026 ~E_DEPRECATED \u0026 ~E_STRICT/error_reporting = E_ALL /g\" /etc/php/${IMAGE_PHP_VERSION}/cli/php.ini \u0026\u0026 sed -i -e \"s/;daemonize = yes/daemonize = no /g\" /etc/php/${IMAGE_PHP_VERSION}/fpm/php-fpm.conf"}
 {"stream":"\n"}
-{"stream":" ---\u003e Using cache\n"}
-{"stream":" ---\u003e 9b42c839eacc\n"}
+{"stream":" ---\u003e Running in 5c37b9c64b28\n"}
+{"stream":"Removing intermediate container 5c37b9c64b28\n"}
+{"stream":" ---\u003e 97b9711d46e9\n"}
 {"stream":"Step 11/13 : ADD default /etc/nginx/sites-available/default"}
 {"stream":"\n"}
-{"stream":" ---\u003e Using cache\n"}
-{"stream":" ---\u003e 219559e60e0b\n"}
+{"stream":" ---\u003e c06588a23573\n"}
 {"stream":"Step 12/13 : ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf"}
 {"stream":"\n"}
-{"stream":" ---\u003e Using cache\n"}
-{"stream":" ---\u003e b74572e34864\n"}
+{"stream":" ---\u003e bb6412b38636\n"}
 {"stream":"Step 13/13 : CMD [ \"supervisord\" ]"}
 {"stream":"\n"}
-{"stream":" ---\u003e Using cache\n"}
-{"stream":" ---\u003e 7241e78433e9\n"}
-{"aux":{"ID":"sha256:7241e78433e9bb59a072c0a4d2ec608dd0b3972e937c17e9cb19af4948846806"}}
-{"stream":"Successfully built 7241e78433e9\n"}
+{"stream":" ---\u003e Running in 1d070612fca8\n"}
+{"stream":"Removing intermediate container 1d070612fca8\n"}
+{"stream":" ---\u003e 6db19b41ed54\n"}
+{"aux":{"ID":"sha256:6db19b41ed54c62c4ee5b29f435cf6fff61d00f5d0c3737301d6707e3bbf13ea"}}
+{"stream":"Successfully built 6db19b41ed54\n"}
 {"stream":"Successfully tagged nginxphpdocker/app:latest\n"}

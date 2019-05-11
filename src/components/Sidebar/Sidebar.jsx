@@ -87,7 +87,7 @@ const Sidebar = ({ ...props }) => {
         })}
       >
         <div className={classes.logoImage}>
-          <img src={require('../../assets/img/cc-logo.png')} alt="logo" className={classes.img} />
+          <img src={require('../../assets/img/app-logo.png')} alt="logo" className={classes.img} />
         </div>
         {logoText}
       </a>

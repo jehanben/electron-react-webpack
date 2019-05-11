@@ -6,6 +6,7 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 
 // core components
 import GridItem from "../../components/Grid/GridItem.jsx";
@@ -27,7 +28,9 @@ var docker = new Docker({
 
 const styles = theme => ({
   root: {
-    width: '90%',
+    ...theme.mixins.gutters(),
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
   },
   backButton: {
     marginRight: theme.spacing.unit,
@@ -89,12 +92,14 @@ class DockerCompose extends React.Component {
       value: '',
       activeStep: 0,
       stopReRun: false,
-      nextButton: false
+      nextButton: false,
+      containerId: false,
+      containerOutput: ''
     }
   }
 
   componentDidMount() {
-    const { activeStep, stopReRun } = this.state;
+    const { activeStep, stopReRun, containerId } = this.state;
 
     if(activeStep === 0 && stopReRun === false) {
 
@@ -122,7 +127,7 @@ class DockerCompose extends React.Component {
         }.bind(this));
 
         stream.on('end', function() {
-          this.done();
+          // this.done();
         }.bind(this));
       }.bind(this));
     }
@@ -171,11 +176,10 @@ class DockerCompose extends React.Component {
           }
           this.appendOutput(data);
 
-          this.setDockerStatus('Docker build process completed');
-
           setTimeout(() => {
             stream.unpipe(writeStream);
-            console.log(container.id);
+
+            this.setDockerStatus(container.id);
             this.enableNext();
           }, 5000)
         }.bind(this));
@@ -225,17 +229,38 @@ class DockerCompose extends React.Component {
   }
 
   appendOutput = (msg) => {
-    document.getElementById("command-output").value += (msg);
+    this.setState({
+      containerOutput: (this.state.containerOutput += msg)
+    })
   }
 
-  setDockerStatus = (msg) => {
-    document.getElementById("status").innerHTML = msg;
+  setDockerStatus = (id) => {
+    this.setState({
+      containerId: id,
+    })
+  }
+
+  dockerSuccessInfo = () => {
+    const { classes } = this.props;
+    const { containerId } = this.state;
+
+    if(containerId !== false) {
+      return (
+          <Paper className={classes.root} elevation={1}>
+            <Typography variant="h5" component="h3">Docker Container starter.</Typography>
+            <Typography component="p">
+              &nbsp; - Docker Image Tag Name: nginxphpdocker/app <br/>
+              &nbsp; - Docker Container ID: {containerId}
+            </Typography>
+          </Paper>
+      )
+    }
   }
 
   render() {
     const { classes } = this.props;
     const steps = getSteps();
-    const { activeStep, nextButton } = this.state;
+    const { activeStep, nextButton, containerId, containerOutput } = this.state;
 
     switch (activeStep) {
       default:
@@ -259,8 +284,10 @@ class DockerCompose extends React.Component {
                     ))}
                   </Stepper>
                   <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
-                  <div id="status"></div>
-                  <textarea className={classes.textAreaStyle} rows="20" id="command-output" disabled></textarea>
+
+                  {this.dockerSuccessInfo()}
+                  <br />
+                  <textarea className={classes.textAreaStyle} value={containerOutput} rows="20" id="command-output" disabled></textarea>
                 </CardBody>
                 <CardFooter>
                   <div>
