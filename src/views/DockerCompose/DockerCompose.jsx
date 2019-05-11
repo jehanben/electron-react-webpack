@@ -15,6 +15,9 @@ import Card from "../../components/Card/Card.jsx";
 import CardHeader from "../../components/Card/CardHeader.jsx";
 import CardBody from "../../components/Card/CardBody.jsx";
 import CardFooter from "../../components/Card/CardFooter.jsx";
+import DockerExec from "../../components/DockerCompose/DockerExec.jsx";
+
+
 
 const fs = require("fs");
 const dockerBuildLog = require('path').resolve('log/docker/docker-build.txt');
@@ -61,6 +64,9 @@ const styles = theme => ({
   },
   nextBtn: {
     margin: theme.spacing.unit,
+  },
+  table: {
+    minWidth: "auto",
   }
 });
 
@@ -93,13 +99,13 @@ class DockerCompose extends React.Component {
       activeStep: 0,
       stopReRun: false,
       nextButton: false,
-      containerId: false,
+      containerId: 'ab269e1feeec',
       containerOutput: ''
     }
   }
 
   componentDidMount() {
-    const { activeStep, stopReRun, containerId } = this.state;
+    const { activeStep, stopReRun } = this.state;
 
     if(activeStep === 0 && stopReRun === false) {
 
@@ -127,6 +133,7 @@ class DockerCompose extends React.Component {
         }.bind(this));
 
         stream.on('end', function() {
+          this.enableNext();
           // this.done();
         }.bind(this));
       }.bind(this));
@@ -203,12 +210,14 @@ class DockerCompose extends React.Component {
   handleNext = () => {
     this.setState(state => ({
       activeStep: state.activeStep + 1,
+      nextButton: false,
     }));
   };
 
   handleBack = () => {
     this.setState(state => ({
       activeStep: state.activeStep - 1,
+      nextButton: true,
     }));
 
     if(this.state.activeStep === 1) {
@@ -343,7 +352,10 @@ class DockerCompose extends React.Component {
                     ))}
                   </Stepper>
                   <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
-
+                  <DockerExec
+                    handleStyle={classes}
+                    containerId={containerId}
+                  />
                 </CardBody>
                 <CardFooter>
                   <div>
@@ -362,9 +374,11 @@ class DockerCompose extends React.Component {
                           >
                             Back
                           </Button>
-                          <Button variant="contained"
-                                  color="primary"
-                                  onClick={this.handleNext}
+                          <Button
+                            disabled={nextButton === false}
+                            variant="contained"
+                            color="primary"
+                            onClick={this.handleNext}
                           >
                             {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                           </Button>
