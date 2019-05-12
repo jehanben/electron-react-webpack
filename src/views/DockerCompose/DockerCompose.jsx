@@ -16,6 +16,7 @@ import CardHeader from "../../components/Card/CardHeader.jsx";
 import CardBody from "../../components/Card/CardBody.jsx";
 import CardFooter from "../../components/Card/CardFooter.jsx";
 import DockerExec from "../../components/DockerCompose/DockerExec.jsx";
+import DockerExecResult from "../../components/DockerCompose/DockerExecResult.jsx";
 
 
 
@@ -71,7 +72,7 @@ const styles = theme => ({
 });
 
 function getSteps() {
-  return ['Docker image and container build', 'Execute code checker', 'Generate Results'];
+  return ['Docker image and container build', 'Verify setup to execute code checker', 'Generate Results'];
 }
 
 function getStepContent(stepIndex) {
@@ -381,7 +382,7 @@ class DockerCompose extends React.Component {
                             color="primary"
                             onClick={this.handleNext}
                           >
-                            {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                            {activeStep === steps.length - 1 ? 'Finish' : 'Start'}
                           </Button>
                         </div>
                       </div>
@@ -412,7 +413,7 @@ class DockerCompose extends React.Component {
                     ))}
                   </Stepper>
                   <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
-
+                  <DockerExecResult />
                 </CardBody>
                 <CardFooter>
                   <div>
