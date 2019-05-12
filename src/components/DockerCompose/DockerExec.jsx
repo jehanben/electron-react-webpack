@@ -48,7 +48,7 @@ export class DockerExec extends React.Component {
     const { containerId, containerInfo } = this.state;
 
     // create a container entity. does not query API
-    var container = docker.getContainer('ab269e1feeec9017fe818f976ad75ebf58ced8a7f64c61105b6ae889b1b8c7b7');
+    var container = docker.getContainer('2e88350e83f975c6ba5b010dbc57ac4cea64bfaf2a43b4a094c18d923b236355');
 
     // query API for container info
     container.inspect(function (err, data) {
@@ -73,8 +73,6 @@ export class DockerExec extends React.Component {
     }.bind(this));
 
     this.dockerExecuteCount(container);
-
-
   }
 
   dockerExecuteCount = (container) => {
@@ -100,8 +98,8 @@ export class DockerExec extends React.Component {
         }.bind(this));
 
         stream.on('end', function() {
-          console.log('done')
-        });
+          this.handleNext();
+        }.bind(this));
       }.bind(this));
     }.bind(this));
   }
@@ -109,7 +107,11 @@ export class DockerExec extends React.Component {
   handleCount = (count) => {
     this.setState({
       fileCount: count
-    })
+    });
+  }
+
+  handleNext = () => {
+    this.props.enableNext();
   }
 
   render() {

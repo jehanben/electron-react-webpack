@@ -133,8 +133,8 @@ class DockerCompose extends React.Component {
         }.bind(this));
 
         stream.on('end', function() {
-          this.enableNext();
           // this.done();
+          this.enableNext();
         }.bind(this));
       }.bind(this));
     }
@@ -355,6 +355,7 @@ class DockerCompose extends React.Component {
                   <DockerExec
                     handleStyle={classes}
                     containerId={containerId}
+                    enableNext = {this.enableNext}
                   />
                 </CardBody>
                 <CardFooter>
