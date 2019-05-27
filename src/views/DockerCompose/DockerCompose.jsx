@@ -19,10 +19,9 @@ import DockerExec from "../../components/DockerCompose/DockerExec.jsx";
 import DockerExecResult from "../../components/DockerCompose/DockerExecResult.jsx";
 
 
-
 const fs = require("fs");
-const dockerBuildLog = require('path').resolve('log/docker/docker-build.txt');
-const dockerRunLog = require('path').resolve('log/docker/docker-run.txt');
+const dockerBuildLog = require('path').resolve('log/docker/docker-build.log');
+const dockerRunLog = require('path').resolve('log/docker/docker-run.log');
 
 var Docker = require('dockerode');
 

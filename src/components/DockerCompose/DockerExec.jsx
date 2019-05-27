@@ -48,7 +48,7 @@ export class DockerExec extends React.Component {
     const { containerId, containerInfo } = this.state;
 
     // create a container entity. does not query API
-    var container = docker.getContainer('2e88350e83f975c6ba5b010dbc57ac4cea64bfaf2a43b4a094c18d923b236355');
+    var container = docker.getContainer('2f4ab33be28b');
 
     // query API for container info
     container.inspect(function (err, data) {

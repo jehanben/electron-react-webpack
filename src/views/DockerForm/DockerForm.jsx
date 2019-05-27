@@ -59,19 +59,19 @@ const styles = theme => ({
 const phpVersions = [
   {
     value: '7.2',
-    label: 'v7.2.2',
+    label: 'v7.2.x',
   },
   {
     value: '7.1',
-    label: 'v7.1.12',
+    label: 'v7.1.x',
   },
   {
     value: '7.0',
-    label: 'v7.0.33',
+    label: 'v7.0.x',
   },
   {
     value: '5.6',
-    label: 'v5.6.2',
+    label: 'v5.6.x',
   },
 ];
 
